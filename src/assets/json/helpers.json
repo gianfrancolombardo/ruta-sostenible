@@ -1,0 +1,34 @@
+[
+    {
+        "name": "ClimateTrade™",
+        "url": "https://market.climatetrade.com/results/es/?referral_code=9933eecd-1854-4c3c-8462-f35027916326",
+        "image": "https://media.licdn.com/dms/image/C4D0BAQFx9H_E3m7vXg/company-logo_200_200/0/1641997247910/climatetrade_logo?e=1711584000&v=beta&t=HUJFqOR0JVuCSdkn79J9jFw-8otqGlNVAL13iBbl-s4",
+        "text": "Varios proyectos de compenzacion",
+        "tree_value": 0.50,
+        "suscription": null
+    },
+    {
+        "name": "Reforesta",
+        "url": "https://reforesta.es/colabora-hazte-socio-de-reforesta/",
+        "image": "https://media.licdn.com/dms/image/C4D0BAQGG6E5o7FqHVg/company-logo_200_200/0/1630527451044/reforesta_logo?e=1711584000&v=beta&t=axW2zrMVQIxFIzcrOFYUkqjifKNv06eJQPZZKoORBZA",
+        "text": "Planes menuales de reforestacion",
+        "tree_value": null,
+        "suscription": 4.16
+    },
+    {
+        "name": "Red de arboles",
+        "url": "https://www.reddearboles.org/donaciones",
+        "image": "https://media.licdn.com/dms/image/C4D0BAQFdU6EjDEv4vA/company-logo_200_200/0/1649190096547/redarboles_logo?e=1711584000&v=beta&t=hWjZyexGlgKTWyk3O_f3HaCglIoxtlZtpkCGCdvxEB8",
+        "text": "Reforestacion en Latam",
+        "tree_value": 7,
+        "suscription": null
+    },
+    {
+        "name": "Bosquia",
+        "url": "https://bosquia.es/producto/apadrinar-arbol/",
+        "image": "https://media.licdn.com/dms/image/C4D0BAQFg244kKhHTxA/company-logo_200_200/0/1631375881489/bosquia_logo?e=1711584000&v=beta&t=9mfL2Y1ZsP5Jl_iatKBk_ovhJhz7ccj6rpKFaqURM1c",
+        "text": "Reforestacion en España",
+        "tree_value": 20,
+        "suscription": null
+    }
+]

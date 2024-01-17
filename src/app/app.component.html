@@ -1,0 +1,306 @@
+<div class="container-fluid">
+  <div class="row row-height">
+    <!-- Left -->
+    <div class="col-xl-4 col-lg-4 content-left">
+      <div class="content-left-wrapper">
+        <div id="social">
+          <ul>
+            <li>
+              <a href="https://github.com/gianfrancolombardo/ruta-sostenible" target="_blank"> <i class="fab fa-github"></i></a>
+            </li>
+            <li class="ml-3">
+              <a href="/#"> <i class="fa fa-info-circle"></i></a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <figure>
+            <img
+              src="assets/img/img_03.svg"
+              alt="Logo de ruta sostenible"
+              class="img-fluid"
+              width="80%"
+              [@fadeInUpOnEnter]
+            />
+          </figure>
+
+          <div>
+            <h2 class="mb-1" [@fadeInUpOnEnter]="{value:'', params:{delay:50}}">#RutaSostenible</h2>
+            <h5 class="our-footprint" [@fadeInUpOnEnter]="{value:'', params:{delay:100}}">Viajar sin dejar huella</h5>
+            <p [@fadeInUpOnEnter]="{value:'', params:{delay:150}}">Calcula tu huella de carbono al moverte y neutralizala</p>
+          </div>
+          <div>
+            <!-- progress bar -->
+          </div>
+        </div>
+
+        <div class="copy">
+          Made with ❤️ by
+          <a href="https://glombardo.xyz" target="_blank">Glombardo</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div class="col-xl-8 col-lg-8 content-right">
+
+      <div class="progress mini">
+        <div class="progress-bar" [style.width.%]="progress()"></div>
+      </div>
+
+      <div id="wizard_container">
+          <!------------------------- Select vehicle ----------------->
+          <div class="step" *ngIf="step == 0" [@fadeInRightOnEnter]="{value:'', params:{delay:100}}" >
+            <h2 class="section_title">¿En que te mueves?</h2>
+            <h3 class="main_question">
+              Dime que conduces y te dire que generas
+            </h3>
+
+            <div class="form-group add_bottom_30">
+              <div class="styled-select">
+                <app-select-vehicle (vehicleChange)="onVehicleChange($event)" />
+              </div>
+            </div>
+
+            <div class="divider">
+              <div class="line"></div>
+              <span class="text">ó</span>
+              <div class="line"></div>
+            </div>
+
+            <p>¿No encontraste tu nave? No hay problema</p>
+            <div class="form-group add_bottom_30">
+              <div class="styled-select">
+                @for (option of vehicles_avg; track option.id) {
+                <label class="container_radio version_2"
+                  >{{ option.name }}
+                  <input
+                    type="radio"
+                    name="car"
+                    value="{{ option.id }}"
+                    (change)="onAvgOpptionChange($event)"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+                }
+              </div>
+            </div>
+
+            <div class="col text-center">
+              <button
+                type="button"
+                class="forward"
+                (click)="next()"
+                [disabled]="vehicle_selected == null"
+              >
+                Continuar
+              </button>
+            </div>
+          </div>
+
+          <!------------------------- Add Kms ------------------------>
+          <div class="step" *ngIf="step == 1" [@fadeInRightOnEnter] >
+            <h2 class="section_title">¿Cuanto te mueves?</h2>
+            <h3 class="main_question">
+              Cuanto Km haces mensualmente, un aprox. claro
+            </h3>
+
+            <div class="form-group add_bottom_30">
+              <div class="styled-select">
+                <input
+                  type="number"
+                  class="form-control"
+                  name="kms"
+                  [(ngModel)]="kms"
+                  placeholder="Km mensuales aprox."
+                />
+              </div>
+            </div>
+
+            <div id="bottom-wizard">
+              <button type="button" class="backward mr-2" (click)="prev()">
+                <i class="fa fa-arrow-left"></i>
+              </button>
+              <button
+                type="button"
+                class="forward"
+                (click)="calculate()"
+                [disabled]="kms == null"
+              >
+                Calcular mi huella
+              </button>
+            </div>
+          </div>
+
+          <!------------------------- Show carbon footprint ----------->
+          <div class="step" *ngIf="step == 2" [@fadeInRightOnEnter]>
+            <h2 class="section_title">La cruda realizad</h2>
+            <h3 class="main_question">
+              Esta es la huella que dejamos en el planeta al movernos
+            </h3>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="card border-warning mb-3 text-warning" [@fadeInRightOnEnter]="{value:'', params:{delay:100}}">
+                  <div
+                    class="card-header bg-transparent border-warning text-center"
+                  >
+                    Tu huella
+                  </div>
+                  <div class="card-body text-center">
+                    <div class="row">
+                      <div class="col-6">
+                        <small class="f-14">Mensual</small>
+                        <h1 class="card-title text-warning my-0">
+                          {{ result?.monthly_emissions | number : "1.0-0" }}
+                          <small class="f-14">ToCO&#8322;</small>
+                        </h1>
+                      </div>
+                      <div class="col-6 border-left border-warning">
+                        <small class="f-14">Anual</small>
+                        <h1 class="card-title text-warning my-0">
+                          {{ result?.annual_emissions | number : "1.0-0" }}
+                          <small class="f-14">ToCO&#8322;</small>
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="card-footer bg-transparent border-warning text-center"
+                  >
+                    <small>
+                      <i class="fa fa-info-circle"></i>
+                      Emisiones por km:
+                      {{ vehicle_selected.emissionsMin | number : "1.0-0" }} -
+                      {{ vehicle_selected.emissionsMax | number : "1.0-0" }}
+                      KgCO&#8322;
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="card border-success mb-3 text-success" [@fadeInRightOnEnter]="{value:'', params:{delay:150}}">
+                  <div
+                    class="card-header bg-transparent border-success text-center"
+                  >
+                    Arboles para neutralizarla
+                  </div>
+                  <div class="card-body text-center">
+                    <div class="row">
+                      <div class="col-6">
+                        <small class="f-14">Mensual</small>
+                        <h1 class="card-title text-success my-0">
+                          {{
+                            result?.trees_to_neutralize_monthly
+                              | number : "1.0-0"
+                          }}
+                        </h1>
+                      </div>
+                      <div class="col-6 border-left border-success">
+                        <small class="f-14">Anual</small>
+                        <h1 class="card-title text-success my-0">
+                          {{
+                            result?.trees_to_neutralize_annually
+                              | number : "1.0-0"
+                          }}
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="bottom-wizard">
+              <button type="button" class="backward mr-2" (click)="prev()">
+                <i class="fa fa-arrow-left"></i>
+              </button>
+              <button type="button" class="forward" (click)="next()">
+                ¡Neutalizemosla!
+              </button>
+            </div>
+          </div>
+
+          <!------------------------- Show helpers -------------------->
+          <div class="step" *ngIf="step == 3" [@fadeInRightOnEnter] >
+            <h2 class="section_title">Manos a la tierra</h2>
+
+            <p class="mb-1">Quiero neutralizar el <b>{{ percentage }}%</b> de mi huella</p>
+            <div class="form-group add_bottom_30">
+              <div class="styled-select">
+                <input
+                  type="range"
+                  class="form-control"
+                  name="percentage"
+                  [(ngModel)]="percentage"
+                  min="1"
+                  max="100"
+                  (change)="calculateValues()"
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="list-group">
+                  @for (helper of helpers; track helper.name) {
+                  <a href="{{helper.url}}" class="list-group-item list-group-item-action" target="_blank">
+                    <div class="media">
+                      <img src="{{helper.image}}" class="rounded-circle mr-3" alt="{{helper.name}}" height="50"/>
+                      <div class="media-body">
+                        <div class="d-flex justify-content-start">
+                          <div>
+                            <h5 class="mt-0 mb-1">{{helper.name}}</h5>
+                            <p class="text-muted mb-1">
+                              {{helper.text}}
+                            </p>
+                          </div>
+                          <div class="d-flex align-items-center ml-auto">
+                            <span class="h4 mb-0 font-weight-normal text-muted ">
+                              <small>~</small> 
+                              @if (helper.tree_value != null) {
+                                {{(helper!.tree_value * result!.trees_to_neutralize_monthly * percentage / 100) | number : "1.0-0"}}
+                              }
+                              @else {
+                                {{helper.suscription}}
+                              }
+                              <small style="margin-left: -8px;">€</small> 
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                  }
+                  
+                  <li class="list-group-item text-muted py-2">
+                    <small>Nuevos helpers en camino...</small>
+                  </li>
+                </div>  
+              </div>
+            </div>
+
+            <div id="bottom-wizard">
+              <button type="button" class="backward mr-2" (click)="prev()">
+                <i class="fa fa-arrow-left"></i>
+              </button>
+              <button type="button" class="forward" (click)="next()">
+                Comparte tu compromiso
+              </button>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <footer class="footer d-block d-lg-none">
+      <div>
+        Made with ❤️ by
+        <a href="https://glombardo.xyz" target="_blank">Glombardo</a>
+      </div>
+    </footer>
+  </div>
+</div>

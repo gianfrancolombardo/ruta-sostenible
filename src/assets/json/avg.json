@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Coche promedio 🚗",
+        "classification": "D",
+        "consumptionMin": "6.0",
+        "consumptionMax": "6.2",
+        "emissionsMin": "129.0",
+        "emissionsMax": "140.0",
+        "id": 1
+    },
+    {
+        "name": "Furgoneta promedio 🚐",
+        "classification": "Sin clasificación",
+        "consumptionMin": "15.2",
+        "consumptionMax": "20.0",
+        "emissionsMin": "269.0",
+        "emissionsMax": "354.0",
+        "id": 2
+    },
+    {
+        "name": "Autocarabana promedio 🚙",
+        "classification": "Sin clasificación",
+        "consumptionMin": "16.0",
+        "consumptionMax": "20.0",
+        "emissionsMin": "282.0",
+        "emissionsMax": "354.0",
+        "id": 3
+    }
+]

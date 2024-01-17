@@ -1,0 +1,9 @@
+<ng-select name="vehicle" 
+            [items]="vehicles$ | async" 
+            bindLabel="name" 
+            bindValue="id" 
+            [loading]="vehiclesLoading"
+            typeToSearchText="Al grano, escribe el modelo primero"
+            [typeahead]="vehiclesInput$"
+            [(ngModel)]="vehicle">
+</ng-select>
