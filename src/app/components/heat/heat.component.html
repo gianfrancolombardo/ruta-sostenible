@@ -1,0 +1,7 @@
+@if (step >= 2){
+    <div class="container-heat"
+    [@fadeInDownOnEnter]="{value:'', params:{delay:500, duration:600, translate: '100px'}}"
+    >
+    <div [style.opacity]="currentHeat"></div>
+    </div>
+}

@@ -1,0 +1,22 @@
+@if (step >= 2){
+<div class="container-clouds">
+    @for (cloud of clouds; track $index) {
+        <img
+        src="assets/img/cloud_0{{cloud.type}}.svg"
+        alt="Nube"
+        class="cloud"
+        style="--init-left: {{cloud.x}}%;"
+        [style.left.%]="cloud.x"
+        [style.top.%]="cloud.y"
+        [width]="cloud.w"
+        
+        [@fadeInRightOnEnter]="cloud.x <= 50 ? {value:'', params:cloud.params} : null"
+        [class.cloud-right]="cloud.x <= 50"
+        
+        [@fadeInLeftOnEnter]="cloud.x > 50 ? {value:'', params:cloud.params} : null"
+        [class.cloud-left]="cloud.x > 50"
+    
+        />
+    }
+</div>
+}

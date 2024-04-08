@@ -1,29 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { SelectVehicleComponent } from './components/select-vehicle/select-vehicle.component';
+import { CloudsComponent } from './components/clouds/clouds.component';
+import { HeatComponent } from './components/heat/heat.component';
+import { TreesComponent } from './components/trees/trees.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { fadeInRightOnEnterAnimation, fadeOutLeftOnLeaveAnimation, fadeInUpOnEnterAnimation, fadeOutUpOnLeaveAnimation, fadeInLeftOnEnterAnimation, fadeOutRightOnLeaveAnimation } from 'angular-animations';
+import {
+  fadeInRightOnEnterAnimation,
+  fadeOutLeftOnLeaveAnimation,
+  fadeInUpOnEnterAnimation,
+  fadeOutUpOnLeaveAnimation,
+  fadeInLeftOnEnterAnimation,
+  fadeOutRightOnLeaveAnimation,
+  fadeInDownOnEnterAnimation,
+} from 'angular-animations';
 
-import VehiclesAvgData from '../assets/json/avg.json'
-import HelpersData from '../assets/json/helpers.json'
+import VehiclesAvgData from '../assets/json/avg.json';
+import HelpersData from '../assets/json/helpers.json';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NgSelectModule, FormsModule, HttpClientModule, SelectVehicleComponent],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    NgSelectModule,
+    FormsModule,
+    HttpClientModule,
+    SelectVehicleComponent,
+    CloudsComponent,
+    HeatComponent,
+    TreesComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   animations: [
-    fadeInUpOnEnterAnimation({ duration: 300, translate: '50px'}),
+    fadeInUpOnEnterAnimation({ duration: 300, translate: '50px' }),
+    fadeInDownOnEnterAnimation({ duration: 300, translate: '50px' }),
     fadeOutUpOnLeaveAnimation({ duration: 300, translate: '20px' }),
-    fadeInLeftOnEnterAnimation({ duration: 200, translate: '50px'}),
+    fadeInLeftOnEnterAnimation({ duration: 200, translate: '50px' }),
     fadeOutRightOnLeaveAnimation({ duration: 200, translate: '50px' }),
-    
+
     fadeOutLeftOnLeaveAnimation({ duration: 200, translate: '50px' }),
     fadeInRightOnEnterAnimation({ duration: 200, translate: '50px' }),
   ],
@@ -40,36 +62,42 @@ export class AppComponent {
 
   result: any;
 
+  @ViewChild(CloudsComponent)cloudsComponent: CloudsComponent = new CloudsComponent();
+  @ViewChild(TreesComponent)treesComponent: TreesComponent = new TreesComponent();
+  @ViewChild(HeatComponent)heatsComponent: HeatComponent = new HeatComponent();
+
   onVehicleChange(vehicle: any) {
     this.vehicle_selected = vehicle;
-    console.log("Vehicle:", this.vehicle_selected);
+    console.log('Vehicle:', this.vehicle_selected);
   }
 
   onAvgOpptionChange(event: any) {
-    this.vehicle_selected = this.vehicles_avg.find(vehicle => vehicle.id == event.target.value);
-    console.log("Vehicle2:", this.vehicle_selected);
+    this.vehicle_selected = this.vehicles_avg.find(
+      (vehicle) => vehicle.id == event.target.value
+    );
+    console.log('Vehicle2:', this.vehicle_selected);
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   ngOnInit() {
-    /*this.vehicle_selected = this.vehicles_avg[0];
+    this.vehicle_selected = this.vehicles_avg[0];
     this.kms = 100;
     this.calculate();
-    this.step = 3;
-    */
+    this.step = 1;
   }
 
-  next(){
+  next() {
     this.step++;
   }
 
-  prev(){
+  prev() {
     this.step--;
   }
 
-  progress(){
-    return (this.step*100) / this.step_total
+  progress() {
+    return (this.step * 100) / this.step_total;
   }
 
   calculate() {
@@ -86,8 +114,8 @@ export class AppComponent {
     const kgCO2_to_trees = 6;
 
     // Calculate the maximum monthly and annual emissions in ToCo2
-    let monthly_emissions = (emissionsAvg * kms) / 1000; 
-    let annual_emissions = monthly_emissions * 12; 
+    let monthly_emissions = (emissionsAvg * kms) / 1000;
+    let annual_emissions = monthly_emissions * 12;
 
     // Calculate the number of trees needed to neutralize the emissions
     let trees_to_neutralize_monthly = monthly_emissions * kgCO2_to_trees; // For a month
@@ -102,9 +130,13 @@ export class AppComponent {
     };
 
     this.step++;
+
+    this.cloudsComponent.generateClouds(this.result.monthly_emissions * 2);
+    this.treesComponent.generateTrees(this.result.trees_to_neutralize_monthly);
+    //this.heatsComponent.generateHeat(this.result.monthly_emissions);
   }
 
-  calculateValues(){
-    
-  }
+  calculateValues() {}
+
+  
 }

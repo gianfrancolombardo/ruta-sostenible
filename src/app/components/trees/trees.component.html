@@ -1,0 +1,18 @@
+@if (step >= 3){
+    <div class="container-trees">
+        @for (tree of trees; track $index) {
+            <img
+            src="assets/img/tree_0{{tree.type}}.svg"
+            alt="arbol"
+            class="tree"
+            style="--init-left: {{tree.x}}%;"
+            [style.left.%]="tree.x"
+            [style.top.%]="tree.y"
+            [width]="tree.w"
+            
+            [@fadeInUpOnEnter]="{value:'', params:tree.params}"
+            [@fadeOutDownOnLeave]="{value:'', params:tree.params}"
+            />
+        }
+    </div>
+    }

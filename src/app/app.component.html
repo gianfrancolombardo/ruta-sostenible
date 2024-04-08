@@ -50,6 +50,11 @@
       </div>
 
       <div id="wizard_container">
+
+        <app-clouds [step]="step"></app-clouds>
+        <app-heat [step]="step" [percentage]="percentage"></app-heat>
+        <app-trees [step]="step" [percentage]="percentage"></app-trees>
+
           <!------------------------- Select vehicle ----------------->
           <div class="step" *ngIf="step == 0" [@fadeInRightOnEnter]="{value:'', params:{delay:100}}" >
             <h2 class="section_title">¿En que te mueves?</h2>
@@ -135,6 +140,9 @@
 
           <!------------------------- Show carbon footprint ----------->
           <div class="step" *ngIf="step == 2" [@fadeInRightOnEnter]>
+
+            
+
             <h2 class="section_title">La cruda realizad</h2>
             <h3 class="main_question">
               Esta es la huella que dejamos en el planeta al movernos
@@ -266,9 +274,10 @@
                                 {{(helper!.tree_value * result!.trees_to_neutralize_monthly * percentage / 100) | number : "1.0-0"}}
                               }
                               @else {
-                                {{helper.suscription}}
+                                {{helper.suscription | number : "1.0-0"}}
                               }
                               <small style="margin-left: -8px;">€</small> 
+                              <span style="font-size: 10px;">/mes</span>
                             </span>
                           </div>
                         </div>
@@ -278,7 +287,7 @@
                   }
                   
                   <li class="list-group-item text-muted py-2">
-                    <small>Nuevos helpers en camino...</small>
+                    <small>Nuevos iniciativas en camino...</small>
                   </li>
                 </div>  
               </div>
@@ -288,9 +297,11 @@
               <button type="button" class="backward mr-2" (click)="prev()">
                 <i class="fa fa-arrow-left"></i>
               </button>
-              <button type="button" class="forward" (click)="next()">
+              <a class="btn btn-info twitter float-right" target="_blank"
+                href="https://twitter.com/intent/tweet?text=Pim%20pam%20pum%2C%20🌱%20neutralice%20el%20{{percentage}}%25%20de%20mi%20huella%20de%20carbono%20al%20moverme%20super%20simple%20%F0%9F%98%8D%0A%23RutaSostenible&url=https%3A%2F%2Fruta-sostenible.glombardo.xyz">
+                <i class="fab fa-twitter"></i>
                 Comparte tu compromiso
-              </button>
+              </a>
             </div>
           </div>
       </div>
