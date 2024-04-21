@@ -26,6 +26,7 @@ export class TreesComponent {
     duration: { min: 100, max: 700 },
     type: { min: 1, max: 1 },
   };
+  max_trees = 100;
   originalTrees: number = 0;
 
   randomInRange(min: number, max: number): number {
@@ -34,7 +35,11 @@ export class TreesComponent {
 
   generateTrees(numTrees: number, is_new: boolean = true): void {
     numTrees = Math.round(numTrees);
+
     if (is_new) {
+      if (numTrees > this.max_trees)
+        numTrees = this.max_trees;
+
       this.clearTrees();
       this.originalTrees = numTrees;
       numTrees = Math.round(numTrees / 2) // Divide by 2 because input range start at 50

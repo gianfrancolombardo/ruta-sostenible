@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -66,12 +66,14 @@ export class AppComponent {
   @ViewChild(TreesComponent)treesComponent: TreesComponent = new TreesComponent();
   @ViewChild(HeatComponent)heatsComponent: HeatComponent = new HeatComponent();
 
+  @ViewChild('modalinfo') modalinfo!: ElementRef<HTMLDialogElement>;
+
   onVehicleChange(vehicle: any) {
     this.vehicle_selected = vehicle;
     console.log('Vehicle:', this.vehicle_selected);
   }
 
-  onAvgOpptionChange(event: any) {
+  onAvgOptionChange(event: any) {
     this.vehicle_selected = this.vehicles_avg.find(
       (vehicle) => vehicle.id == event.target.value
     );
@@ -82,10 +84,10 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.vehicle_selected = this.vehicles_avg[0];
-    this.kms = 100;
-    this.calculate();
-    this.step = 1;
+    //this.vehicle_selected = this.vehicles_avg[0];
+    //this.kms = 100;
+    //this.calculate();
+    //this.step = 1;
   }
 
   next() {
@@ -138,5 +140,4 @@ export class AppComponent {
 
   calculateValues() {}
 
-  
 }

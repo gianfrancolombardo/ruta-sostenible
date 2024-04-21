@@ -346,7 +346,8 @@ a.btn_1.yellow:hover, .btn_1.yellow:hover {
 
 @media (max-width: 767px) {
     .content-left-wrapper {
-        padding: 95px 15px 35px 15px
+        /* padding: 95px 15px 35px 15px */
+        padding: 25px 15px 5px 15px;
     }
 }
 
@@ -541,7 +542,7 @@ h3.main_question {
     font-size: 1.1875rem
 }
 
-button.backward, button.forward, button.submit {
+button.backward, button.forward, button.submit, a.forward {
     border: none;
     color: #fff;
     text-decoration: none;
@@ -583,9 +584,14 @@ button.backward {
 
 #bottom-wizard {
     border-top: 2px solid #ededed;
-    padding-top: 20px;
     text-align: right;
-    margin-top: 30px
+    margin-top: 20px;
+}
+
+@media (max-width: 767px) {
+    #bottom-wizard {
+        width: 100%
+    }
 }
 
 .ui-widget-content {

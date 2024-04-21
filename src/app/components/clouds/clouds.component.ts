@@ -28,12 +28,17 @@ export class CloudsComponent {
     duration: { min: 100, max: 700 },
     type: { min: 1, max: 2 },
   };
+  max_clouds = 100;
 
   randomInRange(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
   
   generateClouds(numClouds: number): void {
+
+    if (numClouds > this.max_clouds)
+      numClouds = this.max_clouds;
+
     this.clearClouds();
     for (let i = 0; i < numClouds; i++) {
       let cloud = {

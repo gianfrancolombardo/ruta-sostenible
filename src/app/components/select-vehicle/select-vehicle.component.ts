@@ -80,8 +80,6 @@ export class SelectVehicleComponent {
       return searchWords.every(word => vehicleNameLower.includes(word));
     });
 
-    console.log(results.length);
-
     return of(results);
   }
 }

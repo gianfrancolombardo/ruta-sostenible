@@ -2,7 +2,7 @@
     {
         "name": "ClimateTrade™",
         "url": "https://market.climatetrade.com/results/es/?referral_code=9933eecd-1854-4c3c-8462-f35027916326",
-        "image": "https://media.licdn.com/dms/image/C4D0BAQFx9H_E3m7vXg/company-logo_200_200/0/1641997247910/climatetrade_logo?e=1720656000&v=beta&t=rHFqiaJ5FfKrr2rwBmEGGvXRA7drlyXFByEMW4brXaw",
+        "image": "assets/img/helpers/climatetrade_logo.webp",
         "text": "Varios proyectos de compenzacion",
         "tree_value": 0.50,
         "suscription": null
@@ -10,7 +10,7 @@
     {
         "name": "Reforesta",
         "url": "https://reforesta.es/colabora-hazte-socio-de-reforesta/",
-        "image": "https://media.licdn.com/dms/image/D560BAQERIwC6erWiFA/company-logo_200_200/0/1712239604957?e=1720656000&v=beta&t=RDXjngQyeZzR-oRjd95L8U7cJjKGLYL52hD6gPrsPxo",
+        "image": "assets/img/helpers/reforesta_logo.webp",
         "text": "Planes menuales de reforestacion",
         "tree_value": null,
         "suscription": 4.16
@@ -18,7 +18,7 @@
     {
         "name": "Red de arboles",
         "url": "https://www.reddearboles.org/donaciones",
-        "image": "https://media.licdn.com/dms/image/C4D0BAQFdU6EjDEv4vA/company-logo_200_200/0/1649190096547/redarboles_logo?e=1720656000&v=beta&t=VrfsP6viGE4GH4g-JWvZNMegVR42Kubia0C0vm4y0Pc",
+        "image": "assets/img/helpers/red_logo.webp",
         "text": "Reforestacion en Latam",
         "tree_value": 7,
         "suscription": null
@@ -26,7 +26,7 @@
     {
         "name": "Bosquia",
         "url": "https://bosquia.es/producto/apadrinar-arbol/",
-        "image": "https://media.licdn.com/dms/image/C4D0BAQFg244kKhHTxA/company-logo_200_200/0/1631375881489/bosquia_logo?e=1720656000&v=beta&t=pHH9hz1eD80-LUvkO6hXCt-UlpXthKm19R9fUM35ghE",
+        "image": "assets/img/helpers/bosquia_logo.webp",
         "text": "Reforestacion en España",
         "tree_value": 20,
         "suscription": null

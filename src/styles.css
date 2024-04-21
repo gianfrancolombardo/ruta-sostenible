@@ -18,6 +18,10 @@
 #bottom-wizard {
     border-top: none;
     padding-top: 0px;
+    padding: 15px 0px;
+    background-color: #fff;
+    border-radius: .25rem;
+    margin-top: 0px;
 }
 
 .content-left{
@@ -41,4 +45,10 @@
 
 h3.main_question{
     font-weight: 400 !important;
+}
+
+@media (max-width: 768px) {
+    .section_title, .main_question{
+        text-align: center !important;
+    }
 }
