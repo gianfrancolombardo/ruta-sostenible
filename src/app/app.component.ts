@@ -37,7 +37,7 @@ import HelpersData from '../assets/json/helpers.json';
     CloudsComponent,
     HeatComponent,
     TreesComponent,
-    CookiesComponent
+    CookiesComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -64,9 +64,11 @@ export class AppComponent {
 
   result: any;
 
-  @ViewChild(CloudsComponent)cloudsComponent: CloudsComponent = new CloudsComponent();
-  @ViewChild(TreesComponent)treesComponent: TreesComponent = new TreesComponent();
-  @ViewChild(HeatComponent)heatsComponent: HeatComponent = new HeatComponent();
+  @ViewChild(CloudsComponent) cloudsComponent: CloudsComponent =
+    new CloudsComponent();
+  @ViewChild(TreesComponent) treesComponent: TreesComponent =
+    new TreesComponent();
+  @ViewChild(HeatComponent) heatsComponent: HeatComponent = new HeatComponent();
 
   @ViewChild('modalinfo') modalinfo!: ElementRef<HTMLDialogElement>;
 
@@ -82,8 +84,7 @@ export class AppComponent {
     console.log('Vehicle2:', this.vehicle_selected);
   }
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
     //this.vehicle_selected = this.vehicles_avg[0];
@@ -130,7 +131,7 @@ export class AppComponent {
       monthly_emissions: monthly_emissions,
       annual_emissions: annual_emissions,
       trees_to_neutralize_monthly: trees_to_neutralize_monthly,
-      trees_to_neutralize_annually: trees_to_neutralize_annually
+      trees_to_neutralize_annually: trees_to_neutralize_annually,
     };
 
     this.step++;
