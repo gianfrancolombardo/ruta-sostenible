@@ -1,0 +1,11 @@
+@if (show_cookies){
+    <div [@fadeInUpOnEnter]>
+        <div class="cookies-message alert alert-secondary">
+            <h5>Esta pagina usa <i>galletas</i> 🍪</h5>
+            <p>Solamente las usamos para entender cómo interactúas con nuestra web. En NINGÚN caso almacenamos datos personales
+            </p>
+            <a href="#" class="btn btn-primary btn-sm mr-2" (click)="set_cookies(true)">Vengan esas cookies</a>
+            <a href="#" class="btn btn-outline-secondary btn-sm" (click)="set_cookies(false)">Nop, no gracias</a>
+        </div>
+    </div>
+}

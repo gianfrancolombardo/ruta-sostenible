@@ -8,6 +8,7 @@ import { SelectVehicleComponent } from './components/select-vehicle/select-vehic
 import { CloudsComponent } from './components/clouds/clouds.component';
 import { HeatComponent } from './components/heat/heat.component';
 import { TreesComponent } from './components/trees/trees.component';
+import { CookiesComponent } from './components/cookies/cookies.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
@@ -36,6 +37,7 @@ import HelpersData from '../assets/json/helpers.json';
     CloudsComponent,
     HeatComponent,
     TreesComponent,
+    CookiesComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

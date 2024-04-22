@@ -24,7 +24,7 @@
         <div>
           <figure [ngClass]="{'d-none d-md-block': step > 0}">
             <img
-              src="assets/img/img_03.svg"
+              src="assets/img/img_main.svg"
               alt="Logo de ruta sostenible"
               class="img-fluid mx-auto"
               width="80%"
@@ -159,9 +159,9 @@
 
         <!------------------------- Show carbon footprint ----------->
         <div class="step" *ngIf="step == 2" [@fadeInRightOnEnter]>
-          <h2 class="section_title">La cruda realizad</h2>
+          <h2 class="section_title">La cruda realidad</h2>
           <h3 class="main_question">
-            Esta es la huella que dejamos en el planeta al movernos
+            Esta es la huella que dejas en el planeta al moverte
           </h3>
 
           <div class="row">
@@ -323,7 +323,7 @@
                 }
 
                 <li class="list-group-item text-muted py-2">
-                  <small>Nuevos iniciativas en camino...</small>
+                  <small>Nuevas iniciativas en camino...</small>
                 </li>
               </div>
             </div>
@@ -424,3 +424,6 @@
     Cerrar
   </button>
 </dialog>
+
+
+<app-cookies></app-cookies>

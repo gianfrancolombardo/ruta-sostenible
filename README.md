@@ -9,3 +9,16 @@ RutaSostenible es una aplicación que calcula la huella de carbono generada por 
 - **Cálculo de Huella de Carbono:** La aplicación permite ingresar el modelo del vehículo y la cantidad de kilómetros recorridos mensualmente para calcular la huella de carbono generada.
 
 - **Neutralización con Árboles:** Proporciona información sobre la cantidad de árboles que se deben plantar para compensar la huella de carbono generada por el vehículo.
+
+## Fuentes:
+- [Base de datos de vehículos y sus emisiones | IADE](https://coches.idae.es/base-datos/marca-y-modelo)
+- [Capacidad de absorción CO2 de los arboles | Selectra Climate](https://climate.selectra.com/en/news/co2-tree)
+
+**Notas:**
+- Los valores de emisiones de CO2 de los vehículos son un promedio entre los valores mínimos y máximos de emisiones de CO2 de cada vehículo.
+- Los valores de absorción de CO2 de los arboles son un promedio y varían dependiendo de:
+  - La especie del árbol
+  - La edad del árbol
+  - El tamaño del árbol
+  - Las condiciones climáticas
+  - El tipo de suelo

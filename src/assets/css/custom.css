@@ -371,3 +371,20 @@ dialog::backdrop {
     background: rgba(0,0,0,0.6);
     backdrop-filter: blur(3px);
 }
+
+
+.cookies-message{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    margin: 20px;
+    width: 500px;
+    background-color: #f7f7f7;
+}
+@media (max-width: 991px) {
+    .cookies-message{
+        width: 100%;
+        margin: 0px;
+        position: fixed;
+    }
+}
