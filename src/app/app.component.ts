@@ -23,6 +23,7 @@ import {
 
 import VehiclesAvgData from '../assets/json/avg.json';
 import HelpersData from '../assets/json/helpers.json';
+import { ConfettiComponent } from './components/confetti/confetti.component';
 
 @Component({
   selector: 'app-root',
@@ -38,6 +39,7 @@ import HelpersData from '../assets/json/helpers.json';
     HeatComponent,
     TreesComponent,
     CookiesComponent,
+    ConfettiComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -87,10 +89,10 @@ export class AppComponent {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    //this.vehicle_selected = this.vehicles_avg[0];
-    //this.kms = 100;
-    //this.calculate();
-    //this.step = 1;
+    // this.vehicle_selected = this.vehicles_avg[0];
+    // this.kms = 100;
+    // this.calculate();
+    // this.step = 1;
   }
 
   next() {
@@ -128,10 +130,12 @@ export class AppComponent {
 
     // Create an object with the 3 calculated values and return it
     this.result = {
+      avg_emissions: emissionsAvg,
       monthly_emissions: monthly_emissions,
       annual_emissions: annual_emissions,
       trees_to_neutralize_monthly: trees_to_neutralize_monthly,
       trees_to_neutralize_annually: trees_to_neutralize_annually,
+
     };
 
     this.step++;

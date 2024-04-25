@@ -1177,7 +1177,7 @@ span.error:after {
 
 .form-control:focus {
     box-shadow: none;
-    border-color: #1dbe72
+    border-color: #0069da;
 }
 
 .container_check {

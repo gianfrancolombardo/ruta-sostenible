@@ -46,7 +46,7 @@
               Viajar sin dejar huella
             </h5>
             <p [@fadeInUpOnEnter]="{ value: '', params: { delay: 150 } }">
-              Calcula tu huella de carbono al moverte y neutralizala
+              Calcula tu huella de carbono al moverte y neutralízala
             </p>
           </div>
           <div>
@@ -71,6 +71,7 @@
         <app-clouds [step]="step"></app-clouds>
         <app-heat [step]="step" [percentage]="percentage"></app-heat>
         <app-trees [step]="step" [percentage]="percentage"></app-trees>
+        <app-confetti [percentage]="percentage"></app-confetti>
 
         <!------------------------- Select vehicle ----------------->
         <div
@@ -78,8 +79,8 @@
           *ngIf="step == 0"
           [@fadeInRightOnEnter]="{ value: '', params: { delay: 100 } }"
         >
-          <h2 class="section_title">¿En que te mueves?</h2>
-          <h3 class="main_question">Dime que conduces y te dire que generas</h3>
+          <h2 class="section_title">¿En qué te mueves?</h2>
+          <h3 class="main_question">Dime qué conduces y te dire qué generas</h3>
 
           <div class="form-group add_bottom_30">
             <div class="styled-select">
@@ -125,9 +126,9 @@
 
         <!------------------------- Add Kms ------------------------>
         <div class="step" *ngIf="step == 1" [@fadeInRightOnEnter]>
-          <h2 class="section_title">¿Cuanto te mueves?</h2>
+          <h2 class="section_title">¿Cuánto te mueves?</h2>
           <h3 class="main_question">
-            Cuanto Km haces mensualmente, un aprox. claro
+            Cuantos Km haces mensualmente, un apróx. claro
           </h3>
 
           <div class="form-group add_bottom_30">
@@ -199,8 +200,7 @@
                   <small>
                     <i class="fa fa-info-circle"></i>
                     Emisiones por km:
-                    {{ vehicle_selected.emissionsMin | number : "1.0-0" }} -
-                    {{ vehicle_selected.emissionsMax | number : "1.0-0" }}
+                    {{ result.avg_emissions | number : "1.0-0" }}
                     KgCO&#8322;
                   </small>
                 </div>
@@ -217,7 +217,7 @@
                 <div
                   class="card-header bg-transparent border-success text-center"
                 >
-                  Arboles para neutralizarla
+                  Árboles para neutralizarla
                 </div>
                 <div class="card-body text-center">
                   <div class="row">
@@ -249,7 +249,7 @@
               <i class="fa fa-arrow-left"></i>
             </button>
             <button type="button" class="forward" (click)="next()">
-              ¡Neutalizemosla!
+              ¡Neutalicémosla!
             </button>
           </div>
         </div>
@@ -342,7 +342,7 @@
                 percentage
               }}%25%20de%20mi%20huella%20de%20carbono%20al%20moverme%20super%20simple%20%F0%9F%98%8D%0A%23RutaSostenible&url=https%3A%2F%2Fruta-sostenible.glombardo.xyz"
             >
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke-width="1.5" color="#fff" viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke-width="1.5" color="#fff" viewBox="0 0 24 24" style="margin-top: -3px;">
               <path stroke="#fff" d="M16.82 20.768 3.753 3.968A.6.6 0 0 1 4.227 3h2.48a.6.6 0 0 1 .473.232l13.067 16.8a.6.6 0 0 1-.474.968h-2.48a.6.6 0 0 1-.473-.232Z"/><path stroke="#fff" stroke-linecap="round" d="M20 3 4 21"/>
             </svg>
               Comparte tu compromiso
@@ -369,7 +369,7 @@
       </div>
     </div>
     <div class="col-10 pl-0">
-      <h5 class="mb-0">Lo más importante... Fuentes!</h5>
+      <h5 class="mb-0">Lo más importante... ¡Fuentes!</h5>
       <p class="mb-3">Entendamos de donde salen estos números</p>
     </div>
   </div>
@@ -393,7 +393,7 @@
               target="_blank"
               href="https://climate.selectra.com/en/news/co2-tree"
             >
-              Capacidad de absorción CO2 de los arboles | Selectra Climate
+              Capacidad de absorción CO2 de los árboles | Selectra Climate
             </a>
           </li>
         </ul>
@@ -408,7 +408,7 @@
             los valores mínimos y máximos de emisiones de CO2 de cada vehículo.
           </li>
           <li>
-            Los valores de absorción de CO2 de los arboles son un promedio y
+            Los valores de absorción de CO2 de los árboles son un promedio y
             varían dependiendo de:
             <ul style="list-style-type: disc !important; padding-left: 1em">
               <li>La especie del árbol</li>
