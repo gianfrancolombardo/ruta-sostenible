@@ -24,6 +24,7 @@ import {
 import VehiclesAvgData from '../assets/json/avg.json';
 import HelpersData from '../assets/json/helpers.json';
 import { ConfettiComponent } from './components/confetti/confetti.component';
+import { AnalyticsService } from './services/analytics.service';
 
 @Component({
   selector: 'app-root',
@@ -91,7 +92,7 @@ export class AppComponent {
     console.log('Vehicle2:', this.vehicle_selected);
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private _analytic: AnalyticsService) {}
 
   ngOnInit() {
     /* this.vehicle_selected = this.vehicles_avg[0];
@@ -148,6 +149,8 @@ export class AppComponent {
     this.cloudsComponent.generateClouds(this.result.monthly_emissions);
     this.treesComponent.generateTrees(this.result.trees_to_neutralize_annually);
     //this.heatsComponent.generateHeat(this.result.monthly_emissions);
+
+    this._analytic.trackEvent("Calculated", "Vehicle: " + this.vehicle_selected.id + " - Kms: " + this.kms, "Data");
   }
 
   calculateValues() {}
