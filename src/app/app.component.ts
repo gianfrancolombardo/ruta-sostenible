@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -73,8 +73,13 @@ export class AppComponent {
   @ViewChild(HeatComponent) heatsComponent: HeatComponent = new HeatComponent();
 
   @ViewChild('modalinfo') modalinfo!: ElementRef<HTMLDialogElement>;
+  @ViewChild('vehicles_avg_group') carRadioGroup!: ElementRef;
 
   onVehicleChange(vehicle: any) {
+    // Uncheck all radio buttons (TODO: change all that for reactive forms)
+    const radios: HTMLInputElement[] = this.carRadioGroup.nativeElement.querySelectorAll('input[type="radio"]');
+    radios.forEach(radio => radio.checked = false);
+
     this.vehicle_selected = vehicle;
     console.log('Vehicle:', this.vehicle_selected);
   }
@@ -89,10 +94,10 @@ export class AppComponent {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    // this.vehicle_selected = this.vehicles_avg[0];
-    // this.kms = 100;
-    // this.calculate();
-    // this.step = 1;
+    /* this.vehicle_selected = this.vehicles_avg[0];
+    this.kms = 100;
+    this.calculate();
+    this.step = 1; */
   }
 
   next() {
@@ -111,37 +116,37 @@ export class AppComponent {
     if (this.kms == null || isNaN(this.kms) || this.kms <= 0)
       throw new Error('Invalid kms value');
     let kms = parseFloat(this.kms);
-    let emissionsMin = parseFloat(this.vehicle_selected.emissionsMin);
-    let emissionsMax = parseFloat(this.vehicle_selected.emissionsMax);
-
-    // Calculate the average emissions
+    let emissionsMin = parseFloat(this.vehicle_selected.emissionsMin) / 1000; // KgCO2/km
+    let emissionsMax = parseFloat(this.vehicle_selected.emissionsMax) / 1000; // KgCO2/km
+    
+    // Calculate the average emissions (kgCO2/km)
     let emissionsAvg = (emissionsMin + emissionsMax) / 2;
 
     // The conversion factor from kgCO2 to trees
-    const kgCO2_to_trees = 6;
+    const kgCO2_for_tree_for_year = 20;                                 // KgCO2
 
-    // Calculate the maximum monthly and annual emissions in ToCo2
-    let monthly_emissions = (emissionsAvg * kms) / 1000;
-    let annual_emissions = monthly_emissions * 12;
+    // Calculate the maximum monthly and annual emissions in KgCo2
+    let monthly_emissions = (emissionsAvg * kms);                       // KgCO2/month    
+    let annual_emissions = monthly_emissions * 12;                      // KgCO2/year 
 
     // Calculate the number of trees needed to neutralize the emissions
-    let trees_to_neutralize_monthly = monthly_emissions * kgCO2_to_trees; // For a month
-    let trees_to_neutralize_annually = annual_emissions * kgCO2_to_trees; // For a year
+    let trees_to_neutralize_annually = annual_emissions / kgCO2_for_tree_for_year;      // For a year
+    let trees_to_neutralize_monthly = trees_to_neutralize_annually / 12;                // For a month
 
     // Create an object with the 3 calculated values and return it
     this.result = {
-      avg_emissions: emissionsAvg,
-      monthly_emissions: monthly_emissions,
-      annual_emissions: annual_emissions,
-      trees_to_neutralize_monthly: trees_to_neutralize_monthly,
-      trees_to_neutralize_annually: trees_to_neutralize_annually,
-
+      avg_emissions: emissionsAvg,                                      // KgCO2/km
+      monthly_emissions: monthly_emissions,                             // KgCO2/month
+      annual_emissions: annual_emissions,                               // KgCO2/year
+      trees_to_neutralize_monthly: trees_to_neutralize_monthly,         // Trees/month
+      trees_to_neutralize_annually: trees_to_neutralize_annually,       // Trees/year
     };
+    console.log('Result:', this.result);
 
     this.step++;
 
-    this.cloudsComponent.generateClouds(this.result.monthly_emissions * 2);
-    this.treesComponent.generateTrees(this.result.trees_to_neutralize_monthly);
+    this.cloudsComponent.generateClouds(this.result.monthly_emissions);
+    this.treesComponent.generateTrees(this.result.trees_to_neutralize_annually);
     //this.heatsComponent.generateHeat(this.result.monthly_emissions);
   }
 

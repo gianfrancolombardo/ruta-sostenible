@@ -96,7 +96,7 @@
 
           <p>¿No encontraste tu nave? No hay problema</p>
           <div class="form-group add_bottom_30">
-            <div class="styled-select">
+            <div class="styled-select" #vehicles_avg_group>
               @for (option of vehicles_avg; track option.id) {
               <label class="container_radio version_2"
                 >{{ option.name }}
@@ -112,7 +112,7 @@
             </div>
           </div>
 
-          <div id="bottom-wizard" class="text-center">
+          <div class="bottom-wizard text-center">
             <button
               type="button"
               class="forward"
@@ -138,12 +138,12 @@
                 class="form-control"
                 name="kms"
                 [(ngModel)]="kms"
-                placeholder="Tal vez 50 km podría ser un buen comienzo"
+                placeholder="Tal vez 100 km podría ser un buen comienzo"
               />
             </div>
           </div>
 
-          <div id="bottom-wizard" class="text-center">
+          <div class="bottom-wizard text-center">
             <button type="button" class="backward mr-2" (click)="prev()">
               <i class="fa fa-arrow-left"></i>
             </button>
@@ -182,14 +182,14 @@
                       <small class="f-14">Mensual</small>
                       <h1 class="card-title text-warning my-0">
                         {{ result?.monthly_emissions | number : "1.0-0" }}
-                        <small class="f-14">ToCO&#8322;</small>
+                        <small class="f-14">KgCO&#8322;</small>
                       </h1>
                     </div>
                     <div class="col-6 border-left border-warning">
                       <small class="f-14">Anual</small>
                       <h1 class="card-title text-warning my-0">
                         {{ result?.annual_emissions | number : "1.0-0" }}
-                        <small class="f-14">ToCO&#8322;</small>
+                        <small class="f-14">KgCO&#8322;</small>
                       </h1>
                     </div>
                   </div>
@@ -200,7 +200,7 @@
                   <small>
                     <i class="fa fa-info-circle"></i>
                     Emisiones por km:
-                    {{ result.avg_emissions | number : "1.0-0" }}
+                    {{ result.avg_emissions | number : "1.0-3" }}
                     KgCO&#8322;
                   </small>
                 </div>
@@ -244,7 +244,7 @@
             </div>
           </div>
 
-          <div id="bottom-wizard" class="text-center">
+          <div class="bottom-wizard text-center">
             <button type="button" class="backward mr-2" (click)="prev()">
               <i class="fa fa-arrow-left"></i>
             </button>
@@ -331,7 +331,7 @@
             </div>
           </div>
 
-          <div id="bottom-wizard" class="text-center">
+          <div class="bottom-wizard text-center">
             <button type="button" class="backward mr-2" (click)="prev()">
               <i class="fa fa-arrow-left"></i>
             </button>
@@ -391,9 +391,18 @@
           <li>
             <a
               target="_blank"
-              href="https://climate.selectra.com/en/news/co2-tree"
+              href="https://climate.selectra.com/es/actualidad/co2-arbol"
             >
               Capacidad de absorción CO2 de los árboles | Selectra Climate
+            </a>
+          </li>
+
+          <li>
+            <a
+              target="_blank"
+              href="https://www.miteco.gob.es/content/dam/miteco/es/cambio-climatico/temas/mitigacion-politicas-y-medidas/guiapa_tcm30-479094.pdf"
+            >
+              Guía para la estimación de absorción de CO2 | MITECO
             </a>
           </li>
         </ul>

@@ -582,14 +582,14 @@ button.backward {
     padding-bottom: 25px
 }
 
-#bottom-wizard {
+.bottom-wizard {
     border-top: 2px solid #ededed;
     text-align: right;
     margin-top: 20px;
 }
 
 @media (max-width: 767px) {
-    #bottom-wizard {
+    .bottom-wizard {
         width: 100%
     }
 }

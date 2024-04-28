@@ -15,7 +15,7 @@
     padding: 0 10px;
 }
 
-#bottom-wizard {
+.bottom-wizard {
     border-top: none;
     padding-top: 0px;
     padding: 15px 0px;
@@ -464,7 +464,7 @@ dialog::backdrop {
     backdrop-filter: blur(10px);
 }
 
-#bottom-wizard{
+.bottom-wizard{
     background: #d9f6df2b;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(0, 0, 0, .125);

@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
@@ -22,6 +22,7 @@ export class SelectVehicleComponent {
   vehiclesLoading = false;
 
   @Output() vehicleChange = new EventEmitter<any>();
+  
   private _vehicle: any;
 
   get vehicle(): any {
