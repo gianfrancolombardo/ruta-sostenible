@@ -1,4 +1,10 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -40,7 +46,7 @@ import { AnalyticsService } from './services/analytics.service';
     HeatComponent,
     TreesComponent,
     CookiesComponent,
-    ConfettiComponent
+    ConfettiComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -78,8 +84,9 @@ export class AppComponent {
 
   onVehicleChange(vehicle: any) {
     // Uncheck all radio buttons (TODO: change all that for reactive forms)
-    const radios: HTMLInputElement[] = this.carRadioGroup.nativeElement.querySelectorAll('input[type="radio"]');
-    radios.forEach(radio => radio.checked = false);
+    const radios: HTMLInputElement[] =
+      this.carRadioGroup.nativeElement.querySelectorAll('input[type="radio"]');
+    radios.forEach((radio) => (radio.checked = false));
 
     this.vehicle_selected = vehicle;
     console.log('Vehicle:', this.vehicle_selected);
@@ -95,14 +102,18 @@ export class AppComponent {
   constructor(private _analytic: AnalyticsService) {}
 
   ngOnInit() {
-    /* this.vehicle_selected = this.vehicles_avg[0];
+    this.vehicle_selected = this.vehicles_avg[0];
     this.kms = 100;
     this.calculate();
-    this.step = 1; */
+    this.step = 1;
   }
 
   next() {
     this.step++;
+
+    if (this.step == 3) {
+      this.animatePercentage();
+    }
   }
 
   prev() {
@@ -119,28 +130,29 @@ export class AppComponent {
     let kms = parseFloat(this.kms);
     let emissionsMin = parseFloat(this.vehicle_selected.emissionsMin) / 1000; // KgCO2/km
     let emissionsMax = parseFloat(this.vehicle_selected.emissionsMax) / 1000; // KgCO2/km
-    
+
     // Calculate the average emissions (kgCO2/km)
     let emissionsAvg = (emissionsMin + emissionsMax) / 2;
 
     // The conversion factor from kgCO2 to trees
-    const kgCO2_for_tree_for_year = 20;                                 // KgCO2
+    const kgCO2_for_tree_for_year = 20; // KgCO2
 
     // Calculate the maximum monthly and annual emissions in KgCo2
-    let monthly_emissions = (emissionsAvg * kms);                       // KgCO2/month    
-    let annual_emissions = monthly_emissions * 12;                      // KgCO2/year 
+    let monthly_emissions = emissionsAvg * kms; // KgCO2/month
+    let annual_emissions = monthly_emissions * 12; // KgCO2/year
 
     // Calculate the number of trees needed to neutralize the emissions
-    let trees_to_neutralize_annually = annual_emissions / kgCO2_for_tree_for_year;      // For a year
-    let trees_to_neutralize_monthly = trees_to_neutralize_annually / 12;                // For a month
+    let trees_to_neutralize_annually =
+      annual_emissions / kgCO2_for_tree_for_year; // For a year
+    let trees_to_neutralize_monthly = trees_to_neutralize_annually / 12; // For a month
 
     // Create an object with the 3 calculated values and return it
     this.result = {
-      avg_emissions: emissionsAvg,                                      // KgCO2/km
-      monthly_emissions: monthly_emissions,                             // KgCO2/month
-      annual_emissions: annual_emissions,                               // KgCO2/year
-      trees_to_neutralize_monthly: trees_to_neutralize_monthly,         // Trees/month
-      trees_to_neutralize_annually: trees_to_neutralize_annually,       // Trees/year
+      avg_emissions: emissionsAvg, // KgCO2/km
+      monthly_emissions: monthly_emissions, // KgCO2/month
+      annual_emissions: annual_emissions, // KgCO2/year
+      trees_to_neutralize_monthly: trees_to_neutralize_monthly, // Trees/month
+      trees_to_neutralize_annually: trees_to_neutralize_annually, // Trees/year
     };
     console.log('Result:', this.result);
 
@@ -150,9 +162,44 @@ export class AppComponent {
     this.treesComponent.generateTrees(this.result.trees_to_neutralize_annually);
     //this.heatsComponent.generateHeat(this.result.monthly_emissions);
 
-    this._analytic.trackEvent("Calculated", "Vehicle: " + this.vehicle_selected.id + " - Kms: " + this.kms, "Data");
+    this._analytic.trackEvent(
+      'Calculated',
+      'Vehicle: ' + this.vehicle_selected.id + ' - Kms: ' + this.kms,
+      'Data'
+    );
   }
 
   calculateValues() {}
 
+  /** Range Animation **/
+  private direction = 1;
+  private intervalId?: number;
+  private hasReached40 = false;
+  private firstTime = true;
+  animatePercentage() {
+    // Delay for UX
+    if (this.firstTime) {
+      this.firstTime = false;
+      setTimeout(() => {
+        this.intervalId = window.setInterval(() => {
+          if (this.percentage === 60) {
+            this.direction = -1;
+          } else if (this.percentage === 40) {
+            this.direction = 1;
+            this.hasReached40 = true;
+          }
+
+          this.percentage += this.direction;
+
+          if (this.percentage === 50 && this.hasReached40) {
+            if (this.intervalId) {
+              window.clearInterval(this.intervalId);
+              this.intervalId = undefined;
+              this.hasReached40 = false;
+            }
+          }
+        }, 30);
+      }, 700);
+    }
+  }
 }

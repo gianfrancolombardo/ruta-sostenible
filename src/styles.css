@@ -19,7 +19,7 @@
     border-top: none;
     padding-top: 0px;
     padding: 15px 0px;
-    background-color: #fff;
+    /* background-color: #fff; */
     border-radius: .25rem;
     margin-top: 0px;
 }
@@ -261,24 +261,6 @@ li {
     content: "\f021";
 }
 
-.cookies-message {
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    margin: 20px;
-    width: 500px;
-    background-color: #f7f7f7;
-}
-
-@media (max-width: 991px) {
-    .cookies-message {
-        width: 100%;
-        margin: 0px;
-        position: fixed;
-    }
-}
-
-
 
 .container-clouds{
     position: absolute;
@@ -309,7 +291,7 @@ li {
         rgba(255,72,72,.8) 0%, 
         rgba(255,72,72,.8) 63%, 
         rgba(255,72,72,0) 100%);
-    transition: opacity 500ms ease-out 200ms;
+    transition: opacity 500ms ease-out 0ms;
 }
 
 .cloud {
@@ -436,6 +418,8 @@ dialog::backdrop {
     width: 500px;
     background-color: #f7f7f7;
 }
+
+
 @media (max-width: 991px) {
     .cookies-message{
         width: 100%;
@@ -445,6 +429,19 @@ dialog::backdrop {
 
     .bottom-wizard{
         margin-bottom: 100px;
+    }
+
+    .list-group h5{
+        font-size: 1rem;
+    }
+
+    dialog{
+        max-width: 96%;
+        min-width: 96%;
+    }
+
+    .min-width-full{
+        min-width: 110%;
     }
 }
 
