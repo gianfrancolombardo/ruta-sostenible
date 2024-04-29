@@ -441,7 +441,7 @@ dialog::backdrop {
     }
 
     .min-width-full{
-        min-width: 110%;
+        min-width: 120%;
     }
 }
 
