@@ -81,6 +81,7 @@ export class AppComponent {
 
   @ViewChild('modalinfo') modalinfo!: ElementRef<HTMLDialogElement>;
   @ViewChild('vehicles_avg_group') carRadioGroup!: ElementRef;
+  @ViewChild('progressbar') progressbar!: ElementRef;
 
   onVehicleChange(vehicle: any) {
     // Uncheck all radio buttons (TODO: change all that for reactive forms)
@@ -111,13 +112,16 @@ export class AppComponent {
   next() {
     this.step++;
 
-    if (this.step == 3) {
+    this.scrollToTop();
+
+    if (this.step == 3)
       this.animatePercentage();
-    }
   }
 
   prev() {
     this.step--;
+
+    this.scrollToTop();
   }
 
   progress() {
@@ -201,5 +205,11 @@ export class AppComponent {
         }, 30);
       }, 700);
     }
+  }
+
+
+  scrollToTop(){
+    // Scroll to top for UX
+    this.progressbar.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }

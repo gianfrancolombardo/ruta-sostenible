@@ -417,6 +417,7 @@ dialog::backdrop {
     margin: 20px;
     width: 500px;
     background-color: #f7f7f7;
+    z-index: 10;
 }
 
 
