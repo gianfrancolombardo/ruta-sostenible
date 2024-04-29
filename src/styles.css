@@ -447,22 +447,25 @@ dialog::backdrop {
 }
 
 
-/* TEST */
-/* .card.border-warning{
-    background: #fcf7e62b;
-    backdrop-filter: blur(10px);
+/* TESTING */
+.card.border-warning{
+    /* background: #fcf7e62b;
+    backdrop-filter: blur(10px); */
+    background: #fcf7e6eb
 }
 .card.border-success{
-    background: #d9f6df2b;
-    backdrop-filter: blur(10px);
+    /* background: #d9f6df2b;
+    backdrop-filter: blur(10px); */
+    background: #d9f6df69
 }
 
 .list-group-item{
-    background: #d9f6df2b;
-    backdrop-filter: blur(10px);
+    /* background: #d9f6df2b;
+    backdrop-filter: blur(10px); */
+    background: #ffffffc7
 }
 
-.bottom-wizard{
+/* .bottom-wizard{
     background: #d9f6df2b;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(0, 0, 0, .125);
