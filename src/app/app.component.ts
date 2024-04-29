@@ -102,10 +102,10 @@ export class AppComponent {
   constructor(private _analytic: AnalyticsService) {}
 
   ngOnInit() {
-    this.vehicle_selected = this.vehicles_avg[0];
+    /* this.vehicle_selected = this.vehicles_avg[0];
     this.kms = 100;
     this.calculate();
-    this.step = 1;
+    this.step = 1; */
   }
 
   next() {
