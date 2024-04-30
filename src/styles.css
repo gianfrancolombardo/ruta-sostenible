@@ -300,6 +300,7 @@ li {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-delay: 900ms;
+    transition: opacity 200ms ease-out;
 }
 
 .cloud-right {

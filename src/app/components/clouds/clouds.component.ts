@@ -18,6 +18,7 @@ import {
 })
 export class CloudsComponent {
   @Input() step: any;
+  @Input() percentage: any;
 
   clouds: any[] = [];
   ranges = {
@@ -65,5 +66,15 @@ export class CloudsComponent {
 
   clearClouds() {
     this.clouds = [];
+  }
+
+  calculateOpacity() {
+    if (this.percentage > 80) {
+      let opacity = 1 - (this.percentage - 80) / 50
+      console.log('opacity:', opacity);
+      return opacity;
+    }else{
+      return 1;
+    }
   }
 }
