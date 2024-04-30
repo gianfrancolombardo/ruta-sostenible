@@ -173,6 +173,18 @@ export class AppComponent {
     );
   }
 
+  calculateHelperAmount(helper: any) {
+    let result = ( helper!.tree_value *
+      this.result!.trees_to_neutralize_monthly *
+      this.percentage ) /
+      100
+    if (result < 1)
+      return 1;
+    return result;
+  }
+
+
+
   calculateValues() {}
 
   /** Range Animation **/

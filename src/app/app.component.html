@@ -304,10 +304,7 @@
                             <small>~</small>
                             @if (helper.tree_value != null) {
                             {{
-                              (helper!.tree_value *
-                                result!.trees_to_neutralize_monthly *
-                                percentage) /
-                                100 | number : "1.0-0"
+                              calculateHelperAmount(helper) | number : "1.0-0"
                             }}
                             } @else {
                             {{ helper.suscription | number : "1.0-0" }}
