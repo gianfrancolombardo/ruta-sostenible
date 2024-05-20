@@ -7,4 +7,9 @@
             placeholder="Busca tu máquina"
             [typeahead]="vehiclesInput$"
             [(ngModel)]="vehicle">
+
+            <!-- Add this to enable title on hover for long names -->
+            <ng-template ng-option-tmp let-item="item">
+                <span [title]="item.name">{{item.name}}</span>
+            </ng-template>
 </ng-select>
