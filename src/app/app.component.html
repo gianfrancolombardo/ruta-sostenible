@@ -62,7 +62,7 @@
     </div>
 
     <!-- Right -->
-    <div class="col-xl-8 col-lg-8 content-right">
+    <div class="col-xl-8 col-lg-8 content-right" [class.content-right-long]="step==3">
       <div class="progress mini" #progressbar>
         <div class="progress-bar" [style.width.%]="progress()"></div>
       </div>

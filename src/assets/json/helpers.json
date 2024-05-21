@@ -30,5 +30,14 @@
         "text": "Reforestación en España",
         "tree_value": 20,
         "suscription": null
+    },
+    {
+        "name": "Amigos de la Patagonia",
+        "url": "https://aapatagonia.org.ar/dona/tus-arboles/",
+        "image": "assets/img/helpers/patagonia_logo.webp",
+        "text": "Reforestación en Argentina",
+        "tree_value": 2,
+        "suscription": null
     }
+
 ]

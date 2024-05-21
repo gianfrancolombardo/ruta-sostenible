@@ -263,7 +263,7 @@ li {
 
 
 .container-clouds{
-    position: absolute;
+    position: fixed;
     top: 0%;
     left: 0%;
     z-index: -2;
@@ -273,7 +273,7 @@ li {
 }
 
 .container-heat{
-    position: absolute;
+    position: fixed;
     top: 0%;
     left: 0%;
     z-index: -1;
@@ -344,7 +344,7 @@ li {
 
 
 .container-trees{
-    position: absolute;
+    position: fixed;
     bottom: 0%;
     left: 0%;
     z-index: -1;
@@ -471,3 +471,8 @@ dialog::backdrop {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(0, 0, 0, .125);
 } */
+
+
+.content-right-long{
+    align-items: normal !important;
+}
